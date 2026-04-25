@@ -1,0 +1,15 @@
+{
+  "name": "manoz-portfolio",
+  "version": "2.0.0",
+  "description": "Manoz Jinagal — Space Portfolio with Photography & Blog",
+  "scripts": {
+    "photos": "node scripts/generate-photos.js",
+    "blog": "node scripts/generate-blog.js",
+    "generate": "node scripts/generate-photos.js && node scripts/generate-blog.js",
+    "serve": "python3 -m http.server 3000",
+    "dev": "npx serve . -p 3000"
+  },
+  "author": "Manoz Jinagal <manozjinagal@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://manozjinagal.github.io"
+}

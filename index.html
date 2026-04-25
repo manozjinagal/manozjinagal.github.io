@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Manoz Jinagal — MCA graduate from NIT Kurukshetra. Associate Implementation Consultant at Edifecs. UI/UX Designer, Web Developer, Java Developer."/>
+<meta name="keywords" content="Manoz Jinagal, MCA, NIT Kurukshetra, Web Developer, Java, Portfolio"/>
+<meta property="og:title" content="Manoz Jinagal — Portfolio"/>
+<meta property="og:description" content="MCA graduate from NIT Kurukshetra. Associate Implementation Consultant. Web Developer."/>
+<meta property="og:type" content="website"/>
+<title>Manoz Jinagal — Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;1,200;1,300&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<link rel="stylesheet" href="src/styles/base.css"/>
+<link rel="stylesheet" href="src/styles/components.css"/>
+<link rel="stylesheet" href="src/styles/animations.css"/>
+</head>
+<body>
+
+<!-- ── SETUP BANNER (delete after EmailJS configured) ── -->
+<div id="setup-banner">
+  ⚙ Edit <code>src/config.js</code> → fill in <code>emailjs.publicKey / serviceId / templateId</code> → delete this banner
+</div>
+
+<!-- ── UI CHROME ── -->
+<div id="progress-bar"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="toast"></div>
+
+<!-- Rocket scrollbar -->
+<svg id="rocket-indicator" viewBox="0 0 18 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9 1C9 1 3.5 7 3.5 15H14.5C14.5 7 9 1 9 1Z" fill="#ff6030" stroke="#ff9060" stroke-width=".4"/>
+  <rect x="6.5" y="14" width="5" height="7" rx="1" fill="#a066ff" stroke="#c090ff" stroke-width=".3"/>
+  <path d="M3.5 17L1 23H6L3.5 17Z" fill="#89c4ff" opacity=".7"/>
+  <path d="M14.5 17L17 23H12L14.5 17Z" fill="#89c4ff" opacity=".7"/>
+  <circle cx="9" cy="10" r="2.5" fill="#e8c87a" opacity=".95"/>
+  <ellipse cx="9" cy="23" rx="2.5" ry="4.5" fill="url(#fl)"/>
+  <defs><radialGradient id="fl" cx="50%" cy="25%" r="60%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#ff8800"/><stop offset="100%" stop-color="#ff3300" stop-opacity="0"/></radialGradient></defs>
+</svg>
+
+<!-- ── BACKGROUNDS ── -->
+<canvas id="star-canvas"></canvas>
+<canvas id="wormhole-canvas"></canvas>
+<div id="nebula"></div>
+
+<!-- ── NAVIGATION ── -->
+<nav id="nav">
+  <a class="nav-logo" href="index.html">Manoz Jinagal</a>
+  <div class="nav-links" id="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#orbit-section">Connect</a>
+    <a href="#contact">Contact</a>
+    <a href="photography.html">Photography</a>
+    <a href="blog.html">Blog</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════ -->
+<div class="wrap">
+<section id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:110px 0 80px;position:relative;">
+
+  <p class="hero-anim-1" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;color:#4a6080;margin-bottom:44px;">
+    // COORDINATES &nbsp;<span style="color:#89c4ff">26.9157° N · 73.8770° E</span> &nbsp;·&nbsp; NIT KURUKSHETRA &nbsp;·&nbsp; INDIA
+  </p>
+
+  <h1 class="hero-anim-2" style="font-family:'Barlow Condensed',sans-serif;font-weight:200;font-size:clamp(64px,11vw,128px);line-height:.9;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:6px;">
+    <span style="display:block;color:#fff;text-shadow:0 0 80px rgba(137,196,255,.2);">Manoz</span>
+    <span style="display:block;font-weight:100;font-size:clamp(52px,9vw,108px);color:transparent;-webkit-text-stroke:1px rgba(137,196,255,.4);">Jinagal</span>
+  </h1>
+
+  <div class="hero-anim-3" style="width:60px;height:1px;background:linear-gradient(to right,#89c4ff,transparent);margin:28px 0;"></div>
+
+  <p class="hero-anim-4" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#ff6030;margin-bottom:20px;">
+    Associate Consultant &nbsp;·&nbsp; Web Developer &nbsp;·&nbsp; NIT'ian
+  </p>
+
+  <p class="hero-anim-5" style="font-size:15px;line-height:1.85;color:rgba(184,204,224,.75);max-width:460px;">
+    MCA graduate from NIT Kurukshetra navigating the digital cosmos through enterprise software, web design, photography & chess.
+  </p>
+
+  <div class="hero-pills hero-anim-6" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;">
+    <span class="pill">Java</span>
+    <span class="pill">Spring Boot</span>
+    <span class="pill">DSA</span>
+    <span class="pill">Web Design</span>
+    <span class="pill">Photography</span>
+    <span class="pill">Chess</span>
+    <span class="pill">500+ LeetCode</span>
+  </div>
+
+  <div class="hero-anim-7" style="display:flex;align-items:center;gap:10px;position:absolute;bottom:36px;left:0;font-family:'Space Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.18em;">
+    <div style="width:32px;height:1px;background:linear-gradient(to right,#89c4ff,transparent);"></div>
+    SCROLL TO EXPLORE
+  </div>
+
+</section>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<div class="wrap">
+<section class="section" id="about" data-reveal>
+  <div class="sec-head"><span class="sec-num">01 //</span><span class="sec-title">About the Explorer</span><div class="sec-line"></div></div>
+  <div class="about-grid">
+    <p class="about-bio">MCA graduate from NIT Kurukshetra, currently working as an Associate Implementation Consultant at Edifecs, Mohali. Passionate about technology — from DSA and enterprise systems to web design, photography, and chess. 500+ LeetCode problems solved. Inter-NIT coding competition podium finisher. Off-screen: strategy games, books, and building things that matter.</p>
+    <div><p class="info-label">Birthday</p><p class="info-value">10 January</p></div>
+    <div><p class="info-label">Location</p><p class="info-value">Mohali, India</p></div>
+    <div><p class="info-label">Degree</p><p class="info-value">Masters of Computer Applications</p></div>
+    <div><p class="info-label">Email</p><p class="info-value"><a href="mailto:manozjinagal@gmail.com">manozjinagal@gmail.com</a></p></div>
+    <div><p class="info-label">Phone</p><p class="info-value"><a href="tel:+918561908667">+91 85619-08667</a></p></div>
+    <div><p class="info-label">Status</p><p class="info-value" style="color:#ff6030">✓ Open to Opportunities</p></div>
+  </div>
+</section>
+</div>
+
+<!-- ══ EXPERIENCE ══ -->
+<div class="wrap">
+<section class="section" id="experience" data-reveal>
+  <div class="sec-head"><span class="sec-num">02 //</span><span class="sec-title">Mission Log</span><div class="sec-line"></div></div>
+  <div class="exp-card card">
+    <div class="exp-top">
+      <span class="exp-role">Associate Implementation Consultant</span>
+      <span class="exp-period">JAN 2022 — PRESENT</span>
+    </div>
+    <p class="exp-company">EDIFECS · MOHALI, INDIA</p>
+    <p class="exp-project">// AlohaCare</p>
+    <ul class="exp-bullets">
+      <li>Developed a custom utility for processing DFF file formats, generating ECF files for encounter management.</li>
+      <li>Integrated EAM components including Velocity templates, Queue, Timer, and email systems.</li>
+      <li>Leveraged database operations and Groovy scripting to handle file processing efficiently.</li>
+      <li>Optimized Groovy script with multithreading, significantly improving processing speed.</li>
+    </ul>
+    <p class="exp-project">// ILS — Independent Living System</p>
+    <ul class="exp-bullets">
+      <li>Developed routes and business rules per client needs for MAO/FL KP.</li>
+      <li>Improved historical data load efficiency using a custom route for multiple providers.</li>
+    </ul>
+    <p class="exp-project">// NAAMCAL Encounter Management</p>
+    <ul class="exp-bullets">
+      <li>Implemented partner setup, custom rules, and routes ensuring alignment with business requirements.</li>
+    </ul>
+  </div>
+</section>
+</div>
+
+<!-- ══ SKILLS ══ -->
+<div class="wrap">
+<section class="section" id="skills" data-reveal>
+  <div class="sec-head"><span class="sec-num">03 //</span><span class="sec-title">Skill Constellation</span><div class="sec-line"></div></div>
+  <div class="skill-list" id="skill-list">
+    <div><div class="skill-row"><span class="skill-name">Java</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill sf-2" data-w="80"></div></div></div>
+    <div><div class="skill-row"><span class="skill-name">Data Structures & Algorithms</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill sf-3" data-w="85"></div></div></div>
+    <div><div class="skill-row"><span class="skill-name">Spring Boot / OAuth 2</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill sf-1" data-w="75"></div></div></div>
+    <div><div class="skill-row"><span class="skill-name">Groovy Scripting</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill sf-4" data-w="75"></div></div></div>
+    <div><div class="skill-row"><span class="skill-name">SpecBuilder / EAM / XEngine</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-fill sf-5" data-w="80"></div></div></div>
+    <div><div class="skill-row"><span class="skill-name">HTML / Web Design</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill sf-1" data-w="90"></div></div></div>
+    <div><div class="skill-row"><span class="skill-name">Dart / System Design</span><span class="skill-pct">55%</span></div><div class="skill-bar"><div class="skill-fill sf-6" data-w="55"></div></div></div>
+  </div>
+</section>
+</div>
+
+<!-- ══ EDUCATION ══ -->
+<div class="wrap">
+<section class="section" id="education" data-reveal>
+  <div class="sec-head"><span class="sec-num">04 //</span><span class="sec-title">Flight Log</span><div class="sec-line"></div></div>
+  <div class="edu-card card"><p class="edu-degree">Master of Computer Applications</p><p class="edu-school">National Institute of Technology · Kurukshetra, Haryana</p><p class="edu-year">2019 — 2022</p><p class="edu-note">NIRF ranking #39. One of India's most prestigious institutions.</p></div>
+  <div class="edu-card card"><p class="edu-degree">Bachelor of Computer Applications</p><p class="edu-school">Dr. B.R. Ambedkar Govt. College · Sri Ganganagar, Rajasthan</p><p class="edu-year">2015 — 2018</p><p class="edu-note">First contact with the cosmos of computing.</p></div>
+</section>
+</div>
+
+<!-- ══ CERTIFICATIONS ══ -->
+<div class="wrap">
+<section class="section" id="certs" data-reveal>
+  <div class="sec-head"><span class="sec-num">05 //</span><span class="sec-title">Mission Badges</span><div class="sec-line"></div></div>
+  <div class="cert-card card"><div><p class="cert-name">Algorithmic Toolbox</p><p class="cert-issuer">COURSERA · APR 2021</p></div><a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/MX6UHRE9MJH9" target="_blank">View ↗</a></div>
+  <div class="cert-card card"><div><p class="cert-name">Machine Learning Pipelines with Azure ML Studio</p><p class="cert-issuer">COURSERA · APR 2021</p></div><a class="cert-link" href="https://coursera.org/share/cf4aa1691a3daaeb1c735994613fbeca" target="_blank">View ↗</a></div>
+  <div class="cert-card card"><div><p class="cert-name">Google Analytics for Beginners</p><p class="cert-issuer">GOOGLE ANALYTICS ACADEMY · APR 2021</p></div><a class="cert-link" href="https://analytics.google.com/analytics/academy/certificate/hWUMoEKWT-WyhhSHXPqb-Q" target="_blank">View ↗</a></div>
+</section>
+</div>
+
+<!-- ══ PROJECTS ══ -->
+<div class="wrap">
+<section class="section" id="projects" data-reveal>
+  <div class="sec-head"><span class="sec-num">06 //</span><span class="sec-title">Launched Missions</span><div class="sec-line"></div></div>
+  <div class="proj-grid">
+    <div class="proj-card card"><p class="proj-num">01</p><p class="proj-name">OAuth 2 Security Schema</p><p class="proj-desc">Spring Boot app with OAuth 2.0 authorization server, resource server, access token flow.</p><div class="proj-tags"><span class="proj-tag">Spring Boot</span><span class="proj-tag">MySQL</span><span class="proj-tag">Java</span></div></div>
+    <div class="proj-card card"><p class="proj-num">02</p><p class="proj-name">Online Book Store</p><p class="proj-desc">Full-stack online bookstore built for MCA students.</p><div class="proj-tags"><span class="proj-tag">Java</span><span class="proj-tag">HTML</span><span class="proj-tag">MySQL</span></div></div>
+    <div class="proj-card card"><p class="proj-num">03</p><p class="proj-name">Electronic Voting Machine</p><p class="proj-desc">EVM implementation written in C++.</p><div class="proj-tags"><span class="proj-tag">C++</span></div></div>
+    <div class="proj-card card"><p class="proj-num">04</p><p class="proj-name">Algorithm Toolbox</p><p class="proj-desc">UC San Diego Coursera — sorting, greedy, divide & conquer.</p><div class="proj-tags"><span class="proj-tag">Java</span><span class="proj-tag">DSA</span></div></div>
+    <div class="proj-card card"><p class="proj-num">05</p><p class="proj-name">Online Exam Portal</p><p class="proj-desc">Platform for online exams, test series and MCQ-based assessments.</p><div class="proj-tags"><span class="proj-tag">HTML</span><span class="proj-tag">Java</span><span class="proj-tag">MySQL</span></div></div>
+    <div class="proj-card card"><p class="proj-num">06</p><p class="proj-name">LeetCode — 500+ Solved</p><p class="proj-desc">500+ DSA problems across arrays, trees, graphs, DP and more.</p><div class="proj-tags"><span class="proj-tag">DSA</span><span class="proj-tag">Java</span></div></div>
+  </div>
+</section>
+</div>
+
+<!-- ══ ACHIEVEMENTS ══ -->
+<div class="wrap">
+<section class="section" id="achievements" data-reveal>
+  <div class="sec-head"><span class="sec-num">07 //</span><span class="sec-title">Hall of Records</span><div class="sec-line"></div></div>
+  <div class="ach-grid">
+    <div class="ach-card card"><div class="ach-year">2019</div><div><p class="ach-title">TECH-SPARDA — 2nd Place</p><p class="ach-desc">Inter-NIT coding competition podium finish.</p></div></div>
+    <div class="ach-card card"><div class="ach-year">2016</div><div><p class="ach-title">Chess Team Champion</p><p class="ach-desc">Champion, Dr. B.R. Ambedkar College.</p></div></div>
+    <div class="ach-card card"><div class="ach-year">2015</div><div><p class="ach-title">Chess Team Runner-Up</p><p class="ach-desc">Runner-up, Dr. B.R. Ambedkar College.</p></div></div>
+    <div class="ach-card card"><div class="ach-year">500+</div><div><p class="ach-title">LeetCode DSA Problems</p><p class="ach-desc">Solved across all major DSA topics.</p></div></div>
+    <div class="ach-card card"><div class="ach-year">2020</div><div><p class="ach-title">Confluence — M-Expert</p><p class="ach-desc">Organized annual cultural fest strategy game, 200+ entries.</p></div></div>
+    <div class="ach-card card"><div class="ach-year">2022</div><div><p class="ach-title">Edifecs Campus Hire</p><p class="ach-desc">Joined Edifecs directly from NIT Kurukshetra.</p></div></div>
+  </div>
+</section>
+</div>
+
+<!-- ══ ORBIT ══ -->
+<section id="orbit-section" style="opacity:0;transform:translateY(36px);transition:opacity .75s,transform .75s;" data-reveal-orbit>
+  <p class="orbit-title">Signal Frequencies</p>
+  <p class="orbit-sub">// Satellites in orbit — click to establish contact</p>
+  <div id="orbit-wrap">
+    <canvas id="orbit-canvas"></canvas>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<div class="wrap">
+<section class="section" id="contact" data-reveal>
+  <div class="sec-head"><span class="sec-num">08 //</span><span class="sec-title">Open Channel</span><div class="sec-line"></div></div>
+  <div class="contact-grid">
+    <div class="contact-copy">
+      <p>Transmissions welcome. Whether it's a project, collaboration, or just saying hi from across the cosmos — comms are open.</p>
+      <div class="contact-data">
+        <div>STATUS &nbsp;&nbsp;&nbsp;&nbsp;: <span>ONLINE</span></div>
+        <div>LOCATION : <span>MOHALI, INDIA</span></div>
+        <div>TIMEZONE : <span>IST (UTC +5:30)</span></div>
+        <div>FREELANCE: <span>OPEN TO OPPORTUNITIES</span></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="field"><label>Your Name</label><input type="text" id="cf-name" placeholder="Commander..."/></div>
+      <div class="field"><label>Your Email</label><input type="email" id="cf-email" placeholder="signal@origin.space"/></div>
+      <div class="field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Transmit your message..."></textarea></div>
+      <div class="form-msg" id="form-msg"></div>
+      <button class="btn" id="send-btn" onclick="handleSend()">Transmit</button>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-name">Manoz Jinagal</span>
+    <div style="display:flex;gap:20px;align-items:center;">
+      <a href="photography.html" style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;" onmouseover="this.style.color='#89c4ff'" onmouseout="this.style.color='#4a6080'">Photography</a>
+      <a href="blog.html" style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;" onmouseover="this.style.color='#89c4ff'" onmouseout="this.style.color='#4a6080'">Blog</a>
+    </div>
+    <span class="footer-copy">NIT'IAN · © 2026 · ALL SYSTEMS GO</span>
+  </div>
+</footer>
+</div>
+
+<script type="module">
+import { initStarfield, initBlackHole, initNebula, initOrbit } from './src/utils/canvas.js';
+import { initEmailJS, notifyVisit, sendContactForm }           from './src/utils/emailjs.js';
+import { CONFIG } from './src/config.js';
+
+// ── INIT BACKGROUNDS ──
+initStarfield();
+initBlackHole();
+initNebula();
+initOrbit(CONFIG.socials);
+
+// ── CURSOR ──
+const cur  = document.getElementById('cursor');
+const curR = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function animR(){ rx+=(mx-rx)*.13; ry+=(my-ry)*.13; curR.style.left=rx+'px'; curR.style.top=ry+'px'; requestAnimationFrame(animR); })();
+document.querySelectorAll('a,button,.proj-card,.ach-card,.cert-card,.edu-card').forEach(el => {
+  el.addEventListener('mouseenter', ()=>{ cur.classList.add('hovering'); curR.classList.add('hovering'); });
+  el.addEventListener('mouseleave', ()=>{ cur.classList.remove('hovering'); curR.classList.remove('hovering'); });
+});
+
+// ── SCROLL EFFECTS ──
+const rocket = document.getElementById('rocket-indicator');
+const prog   = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  prog.style.width = (pct * 100) + '%';
+  rocket.style.top = (16 + pct * (window.innerHeight - 52)) + 'px';
+}, { passive: true });
+rocket.style.top = '16px';
+
+// ── SECTION REVEAL ──
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: .1 });
+document.querySelectorAll('[data-reveal]').forEach(el => revObs.observe(el));
+
+// Orbit section reveal
+const orbitEl = document.querySelector('[data-reveal-orbit]');
+if (orbitEl) {
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { orbitEl.style.opacity='1'; orbitEl.style.transform='none'; }
+  }, { threshold: .1 }).observe(orbitEl);
+}
+
+// ── SKILL BARS ──
+const skObs = new IntersectionObserver(([e]) => {
+  if (e.isIntersecting) {
+    document.querySelectorAll('.skill-fill').forEach(el => el.style.width = el.dataset.w + '%');
+    skObs.disconnect();
+  }
+}, { threshold: .25 });
+const skSection = document.getElementById('skills');
+if (skSection) skObs.observe(skSection);
+
+// ── HAMBURGER ──
+const hamburger  = document.getElementById('hamburger');
+const navLinks   = document.getElementById('nav-links');
+hamburger?.addEventListener('click', () => navLinks.classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// ── TOAST ──
+function showToast(msg, dur=4500) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), dur);
+}
+
+// ── CONTACT FORM ──
+window.handleSend = async function() {
+  const name  = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const msg   = document.getElementById('cf-msg').value.trim();
+  const msgEl = document.getElementById('form-msg');
+  const btn   = document.getElementById('send-btn');
+  msgEl.className = 'form-msg';
+  if (!name || !email || !msg) { msgEl.textContent='// All fields required'; msgEl.className='form-msg er'; return; }
+  btn.disabled=true; btn.textContent='Transmitting...';
+  const result = await sendContactForm({ name, email, message: msg });
+  msgEl.textContent = result.msg;
+  msgEl.className = 'form-msg ' + (result.ok ? 'ok' : 'er');
+  if (result.ok) { document.getElementById('cf-name').value=''; document.getElementById('cf-email').value=''; document.getElementById('cf-msg').value=''; }
+  btn.disabled=false; btn.textContent='Transmit';
+};
+
+// ── EMAILJS + VISIT NOTIFY ──
+initEmailJS();
+notifyVisit();
+setTimeout(() => showToast('// Welcome to the digital cosmos, Explorer.'), 1800);
+</script>
+</body>
+</html>

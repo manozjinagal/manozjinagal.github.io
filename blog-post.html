@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blog Post — Manoz Jinagal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,600;1,200;1,300&family=Space+Mono:wght@400;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="src/styles/base.css"/>
+<link rel="stylesheet" href="src/styles/components.css"/>
+<link rel="stylesheet" href="src/styles/animations.css"/>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="star-canvas"></canvas>
+<div id="nebula"></div>
+
+<svg id="rocket-indicator" viewBox="0 0 18 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9 1C9 1 3.5 7 3.5 15H14.5C14.5 7 9 1 9 1Z" fill="#ff6030" stroke="#ff9060" stroke-width=".4"/>
+  <rect x="6.5" y="14" width="5" height="7" rx="1" fill="#a066ff"/>
+  <ellipse cx="9" cy="23" rx="2.5" ry="4.5" fill="url(#fl4)"/>
+  <defs><radialGradient id="fl4" cx="50%" cy="25%" r="60%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#ff8800"/><stop offset="100%" stop-color="#ff3300" stop-opacity="0"/></radialGradient></defs>
+</svg>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html">Manoz Jinagal</a>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html">Home</a>
+    <a href="photography.html">Photography</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- Post container — populated by JS -->
+<div id="post-root">
+  <div style="min-height:80vh;display:flex;align-items:center;justify-content:center;">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<div class="wrap">
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="blog.html" style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;" onmouseover="this.style.color='#89c4ff'" onmouseout="this.style.color='#4a6080'">← All Posts</a>
+    <span class="footer-name">Manoz Jinagal</span>
+    <span class="footer-copy">© 2026</span>
+  </div>
+</footer>
+</div>
+
+<script type="module">
+import { initStarfield, initNebula } from './src/utils/canvas.js';
+import { parseMarkdown }             from './src/utils/markdown.js';
+initStarfield();
+initNebula();
+
+// Cursor
+const cur=document.getElementById('cursor'),curR=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function animR(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animR);})();
+
+// Scroll
+const rocket=document.getElementById('rocket-indicator'),prog=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);prog.style.width=(p*100)+'%';rocket.style.top=(16+p*(window.innerHeight-52))+'px';},{passive:true});
+rocket.style.top='16px';
+
+// Hamburger
+document.getElementById('hamburger')?.addEventListener('click',()=>document.getElementById('nav-links').classList.toggle('open'));
+
+// ── BLOG POST LOADER ──
+function formatDate(d){ try{return new Date(d).toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'});}catch(_){return d;} }
+
+async function loadPost() {
+  const params   = new URLSearchParams(window.location.search);
+  const filename = params.get('post');
+  const root     = document.getElementById('post-root');
+
+  if (!filename) {
+    root.innerHTML = `<div class="blog-post-wrap"><p style="color:#ff8080;font-family:'Space Mono',monospace">// No post specified. <a href="blog.html" style="color:#89c4ff">← Back to blog</a></p></div>`;
+    return;
+  }
+
+  try {
+    // Load the raw markdown file
+    const res = await fetch(`public/blog/${filename}`);
+    if (!res.ok) throw new Error('Post not found');
+    const raw = await res.text();
+
+    // Parse frontmatter
+    const fmMatch = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+    let meta = {}, body = raw;
+    if (fmMatch) {
+      fmMatch[1].split('\n').forEach(line => {
+        const [k,...v] = line.split(':');
+        if(k&&v.length) meta[k.trim()] = v.join(':').trim().replace(/^['"]|['"]$/g,'');
+      });
+      body = fmMatch[2].trim();
+    }
+
+    const title   = meta.title   || filename.replace(/\.md$/,'').replace(/[-_]/g,' ');
+    const date    = meta.date    || '';
+    const cat     = meta.category|| 'General';
+    const cover   = meta.cover   || null;
+    const tags    = meta.tags    ? meta.tags.split(',').map(t=>t.trim()) : [];
+    const words   = body.split(/\s+/).length;
+    const readMin = Math.ceil(words/200);
+
+    // Update page title
+    document.title = `${title} — Manoz Jinagal`;
+
+    // Render
+    root.innerHTML = `
+      <div class="blog-post-wrap">
+        <div class="post-header">
+          <div class="post-meta">
+            <span class="blog-cat">${cat}</span>
+            <span class="blog-date">${formatDate(date)}</span>
+            <span class="blog-read-time">${readMin} min read · ${words.toLocaleString()} words</span>
+          </div>
+          <h1 class="post-title">${title}</h1>
+          ${tags.length ? `<div class="proj-tags" style="margin-bottom:20px">${tags.map(t=>`<span class="proj-tag">${t}</span>`).join('')}</div>` : ''}
+          ${cover ? `<img class="post-cover" src="${cover}" alt="${title}" loading="lazy"/>` : ''}
+        </div>
+        <div class="post-content" id="post-content">${parseMarkdown(body)}</div>
+        <div style="margin-top:56px;padding-top:28px;border-top:1px solid rgba(137,196,255,.12);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <a href="blog.html" class="btn btn--accent" style="font-size:11px;padding:10px 24px;">← Back to Blog</a>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.1em">MANOZ JINAGAL · ${new Date().getFullYear()}</div>
+        </div>
+      </div>`;
+
+    // Animate content sections
+    setTimeout(() => {
+      document.querySelector('.post-header')?.classList.add('section','visible');
+    }, 100);
+
+  } catch(err) {
+    root.innerHTML = `
+      <div class="blog-post-wrap">
+        <div class="empty-state">
+          <p style="font-size:32px;margin-bottom:16px">📡</p>
+          <p style="color:#ddeeff;font-size:14px;margin-bottom:8px">Post not found.</p>
+          <p>The file <code style="color:#89c4ff">${filename}</code> doesn't exist in <code>public/blog/</code></p>
+          <br/><a href="blog.html" style="color:#89c4ff;font-family:'Space Mono',monospace;font-size:11px">← Back to Blog</a>
+        </div>
+      </div>`;
+  }
+}
+
+loadPost();
+</script>
+</body>
+</html>

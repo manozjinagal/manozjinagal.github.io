@@ -1,0 +1,82 @@
+/* ═══════════════════════════════════════════════════
+   ANIMATIONS.CSS
+   Manoz Jinagal Portfolio
+═══════════════════════════════════════════════════ */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes blastIn {
+  from { opacity: 0; transform: scale(.85) translateY(28px); filter: blur(16px); }
+  to   { opacity: 1; transform: scale(1)  translateY(0);    filter: blur(0);    }
+}
+@keyframes slideRight {
+  from { transform: translateX(-20px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%       { transform: scale(1.04); opacity: .85; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes shootingStar {
+  0%   { transform: translateX(0) translateY(0)     opacity(1); }
+  100% { transform: translateX(300px) translateY(160px) opacity(0); }
+}
+
+/* ── Hero entrance ── */
+.hero-anim-1 { opacity: 0; animation: fadeIn  .9s ease forwards .15s; }
+.hero-anim-2 { opacity: 0; animation: blastIn 1s  cubic-bezier(.16,1,.3,1) forwards .3s; }
+.hero-anim-3 { opacity: 0; animation: fadeUp  .7s ease forwards .7s; }
+.hero-anim-4 { opacity: 0; animation: fadeUp  .7s ease forwards .85s; }
+.hero-anim-5 { opacity: 0; animation: fadeUp  .7s ease forwards 1s; }
+.hero-anim-6 { opacity: 0; animation: fadeUp  .7s ease forwards 1.15s; }
+.hero-anim-7 { opacity: 0; animation: fadeUp  .7s ease forwards 1.5s; }
+
+/* ── Photo grid entrance ── */
+.photo-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, border-color var(--t-med);
+}
+.photo-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Blog card entrance ── */
+.blog-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease, border-color var(--t-med);
+}
+.blog-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Hover micro-interactions ── */
+.hover-lift {
+  transition: transform var(--t-med), box-shadow var(--t-med);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.4);
+}
+
+/* ── Loading spinner ── */
+.spinner {
+  width: 32px; height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--glow);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  margin: 40px auto;
+}

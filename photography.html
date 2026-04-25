@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Manoz Jinagal — Photography Portfolio. Nature, Travel, Portrait and Street photography."/>
+<title>Photography — Manoz Jinagal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,600;1,200;1,300&family=Space+Mono:wght@400;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="src/styles/base.css"/>
+<link rel="stylesheet" href="src/styles/components.css"/>
+<link rel="stylesheet" href="src/styles/animations.css"/>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="toast"></div>
+<canvas id="star-canvas"></canvas>
+<div id="nebula"></div>
+
+<svg id="rocket-indicator" viewBox="0 0 18 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9 1C9 1 3.5 7 3.5 15H14.5C14.5 7 9 1 9 1Z" fill="#ff6030" stroke="#ff9060" stroke-width=".4"/>
+  <rect x="6.5" y="14" width="5" height="7" rx="1" fill="#a066ff"/>
+  <ellipse cx="9" cy="23" rx="2.5" ry="4.5" fill="url(#fl2)"/>
+  <defs><radialGradient id="fl2" cx="50%" cy="25%" r="60%"><stop offset="0%" stop-color="#fff"/><stop offset="35%" stop-color="#ff8800"/><stop offset="100%" stop-color="#ff3300" stop-opacity="0"/></radialGradient></defs>
+</svg>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html">Manoz Jinagal</a>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="photography.html" class="active">Photography</a>
+    <a href="blog.html">Blog</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="wrap">
+  <!-- Page hero -->
+  <div class="page-hero section visible">
+    <p class="page-hero-tag">// Visual Transmissions</p>
+    <h1 class="page-hero-title">
+      Photo<span>graphy</span>
+    </h1>
+    <p class="page-hero-sub">Capturing light, moments, and the stories between them. Each frame is a transmission from a different corner of the cosmos.</p>
+  </div>
+
+  <!-- Category tabs -->
+  <div class="cat-tabs" id="cat-tabs">
+    <button class="cat-tab active" data-cat="all">All</button>
+  </div>
+
+  <!-- Photo count -->
+  <p id="photo-count" style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6080;letter-spacing:.1em;margin-bottom:24px;"></p>
+
+  <!-- Photo grid -->
+  <div class="photo-grid" id="photo-grid">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <span class="lb-close" id="lb-close">✕ CLOSE</span>
+  <img id="lb-img" src="" alt=""/>
+  <div class="lb-nav">
+    <button id="lb-prev">← PREV</button>
+    <span class="lb-caption" id="lb-caption"></span>
+    <button id="lb-next">NEXT →</button>
+  </div>
+</div>
+
+<div class="wrap">
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-name">Manoz Jinagal</span>
+    <span class="footer-copy">© 2026 · ALL FRAMES CAPTURED</span>
+  </div>
+</footer>
+</div>
+
+<script type="module">
+import { initStarfield, initNebula } from './src/utils/canvas.js';
+initStarfield();
+initNebula();
+
+// Cursor
+const cur=document.getElementById('cursor'),curR=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function animR(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animR);})();
+
+// Scroll
+const rocket=document.getElementById('rocket-indicator'),prog=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);prog.style.width=(p*100)+'%';rocket.style.top=(16+p*(window.innerHeight-52))+'px';},{passive:true});
+rocket.style.top='16px';
+
+// Hamburger
+document.getElementById('hamburger')?.addEventListener('click',()=>document.getElementById('nav-links').classList.toggle('open'));
+
+// Hover cursor
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.classList.add('hovering');curR.classList.add('hovering');});
+  el.addEventListener('mouseleave',()=>{cur.classList.remove('hovering');curR.classList.remove('hovering');});
+});
+
+// ── PHOTO ENGINE ──
+let allPhotos = [], filtered = [], currentIdx = 0;
+
+async function loadPhotos() {
+  const grid = document.getElementById('photo-grid');
+  try {
+    const res  = await fetch('public/photos/photos.json');
+    if (!res.ok) throw new Error('not found');
+    const data = await res.json();
+
+    // Flatten all photos
+    allPhotos = [];
+    data.categories.forEach(cat => {
+      cat.photos.forEach(p => allPhotos.push({ ...p, category: cat.id, categoryName: cat.name }));
+    });
+
+    // Build category tabs
+    const tabs = document.getElementById('cat-tabs');
+    const cats = ['all', ...data.categories.map(c => c.id)];
+    tabs.innerHTML = cats.map(c => {
+      const label = c === 'all' ? 'All' : data.categories.find(x=>x.id===c)?.name || c;
+      const count = c === 'all' ? allPhotos.length : data.categories.find(x=>x.id===c)?.count || 0;
+      return `<button class="cat-tab${c==='all'?' active':''}" data-cat="${c}">${label} <span style="opacity:.5">${count}</span></button>`;
+    }).join('');
+    tabs.querySelectorAll('.cat-tab').forEach(btn => btn.addEventListener('click', () => {
+      tabs.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      filterPhotos(btn.dataset.cat);
+    }));
+
+    filterPhotos('all');
+  } catch (_) {
+    // Show empty state with instructions
+    grid.innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1">
+        <p style="font-size:32px;margin-bottom:16px;">📸</p>
+        <p style="color:#ddeeff;font-size:14px;margin-bottom:8px;">No photos found yet.</p>
+        <p>Add your photos to the folders below, then run the generator:</p>
+        <code>
+public/photos/nature/     ← nature shots<br>
+public/photos/travel/     ← travel photography<br>
+public/photos/portrait/   ← portraits<br>
+public/photos/street/     ← street photography<br>
+<br>
+Then run: node scripts/generate-photos.js
+        </code>
+        <p style="margin-top:20px;font-size:11px;">JPG, PNG, WebP supported. Filename becomes photo title.</p>
+      </div>`;
+    document.getElementById('photo-count').textContent = '// 0 photos — add some!';
+  }
+}
+
+function filterPhotos(cat) {
+  filtered = cat === 'all' ? [...allPhotos] : allPhotos.filter(p => p.category === cat);
+  document.getElementById('photo-count').textContent = `// ${filtered.length} photo${filtered.length!==1?'s':''} ${cat!=='all'?'in this category':'total'}`;
+  renderGrid();
+}
+
+function renderGrid() {
+  const grid = document.getElementById('photo-grid');
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><p>No photos in this category yet.</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map((p, i) => `
+    <div class="photo-item" data-idx="${i}" style="transition-delay:${(i%12)*40}ms">
+      <img src="${p.path}" alt="${p.title}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.opacity='1';console.warn('Photo not found:',this.src)"/>
+      <div class="photo-overlay" style="opacity:0;transition:opacity .3s">
+        <p class="photo-title">${p.title}</p>
+        <p class="photo-cat">${p.categoryName || p.category}</p>
+      </div>
+    </div>`).join('');
+
+  // Intersection observer for photo entrance
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} });
+  },{threshold:.05});
+  grid.querySelectorAll('.photo-item').forEach(el => {
+    obs.observe(el);
+    el.addEventListener('click', () => openLightbox(+el.dataset.idx));
+    el.addEventListener('mouseenter',()=>{cur.classList.add('hovering');curR.classList.add('hovering');});
+    el.addEventListener('mouseleave',()=>{cur.classList.remove('hovering');curR.classList.remove('hovering');});
+  });
+}
+
+// ── LIGHTBOX ──
+function openLightbox(idx) {
+  currentIdx = idx;
+  showLightboxImg();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function showLightboxImg() {
+  const p = filtered[currentIdx];
+  document.getElementById('lb-img').src = p.path;
+  document.getElementById('lb-img').alt = p.title;
+  document.getElementById('lb-caption').textContent = `${p.title} · ${p.categoryName || p.category} · ${currentIdx+1} / ${filtered.length}`;
+}
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb-prev').addEventListener('click', ()=>{ currentIdx=(currentIdx-1+filtered.length)%filtered.length; showLightboxImg(); });
+document.getElementById('lb-next').addEventListener('click', ()=>{ currentIdx=(currentIdx+1)%filtered.length; showLightboxImg(); });
+document.getElementById('lightbox').addEventListener('click', e=>{ if(e.target===e.currentTarget) closeLightbox(); });
+document.addEventListener('keydown', e=>{
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowLeft'){currentIdx=(currentIdx-1+filtered.length)%filtered.length;showLightboxImg();}
+  if(e.key==='ArrowRight'){currentIdx=(currentIdx+1)%filtered.length;showLightboxImg();}
+});
+
+loadPhotos();
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{
+  "generated": "2026-04-25T09:07:17.989Z",
+  "totalPosts": 4,
+  "categories": [
+    "Photography",
+    "Travel",
+    "Tech",
+    "Career"
+  ],
+  "posts": [
+    {
+      "file": "2024-06-10-photography-as-programmer.md",
+      "slug": "2024-06-10-photography-as-programmer",
+      "title": "Photography as a Programmer — Seeing in Frames",
+      "date": "2024-06-10",
+      "category": "Photography",
+      "cover": null,
+      "excerpt": "How programming taught me to see photography differently, and how photography taught me to think about code differently. Two disciplines with more in common than you'd expect.",
+      "readingTime": "3 min read",
+      "tags": [
+        "Photography",
+        "Life",
+        "Creativity"
+      ],
+      "wordCount": 539
+    },
+    {
+      "file": "2024-06-10-My-first-post.md",
+      "slug": "2024-06-10-my-first-post",
+      "title": "My Trip to Manali",
+      "date": "2024-08-15",
+      "category": "Travel",
+      "cover": "/photos/travel/manali-mountains.jpg",
+      "excerpt": "Three days in the mountains changed how I see everything. Here's what happened.",
+      "readingTime": "1 min read",
+      "tags": [
+        "Travel",
+        "Mountains",
+        "Photography"
+      ],
+      "wordCount": 77
+    },
+    {
+      "file": "2024-03-20-leetcode-500.md",
+      "slug": "2024-03-20-leetcode-500",
+      "title": "500 LeetCode Problems — What I Actually Learned",
+      "date": "2024-03-20",
+      "category": "Tech",
+      "cover": null,
+      "excerpt": "Solving 500+ problems on LeetCode taught me less about clever tricks and more about thinking systematically under constraint. Here's the honest breakdown.",
+      "readingTime": "3 min read",
+      "tags": [
+        "DSA",
+        "LeetCode",
+        "Java",
+        "Algorithms"
+      ],
+      "wordCount": 571
+    },
+    {
+      "file": "2024-01-15-nit-to-enterprise.md",
+      "slug": "2024-01-15-nit-to-enterprise",
+      "title": "From NIT Kurukshetra to Enterprise Software — My Journey",
+      "date": "2024-01-15",
+      "category": "Career",
+      "cover": null,
+      "excerpt": "How an MCA degree from one of India's top institutions launched me into the world of healthcare EDI and enterprise implementation consulting.",
+      "readingTime": "3 min read",
+      "tags": [
+        "Career",
+        "NIT",
+        "Java",
+        "Edifecs"
+      ],
+      "wordCount": 463
+    }
+  ]
+}
