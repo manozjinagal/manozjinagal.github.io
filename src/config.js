@@ -35,10 +35,10 @@ export const CONFIG = {
 
   // ── EmailJS (visitor notifications) ──
   emailjs: {
-    publicKey:  'P',
-    serviceId:  'S',
-    templateId: 'T',
-    toEmail:    'manozjinagal@gmail.com’,
+    publicKey:  'YOUR_PUBLIC_KEY',
+    serviceId:  'YOUR_SERVICE_ID',
+    templateId: 'YOUR_TEMPLATE_ID',
+    toEmail:    'manozjinagal@gmail.com',
   },
 
   // ── Skills ──
