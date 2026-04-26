@@ -37,7 +37,7 @@
   <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- Post container — populated by JS -->
+  <a href="blog.html" class="mobile-back" style="margin:calc(var(--nav-h) + 16px) 0 0 var(--wrap-px);display:none;" id="mobile-back-btn">← All Posts</a>
 <div id="post-root">
   <div style="min-height:80vh;display:flex;align-items:center;justify-content:center;">
     <div class="spinner"></div>
@@ -151,6 +151,12 @@ async function loadPost() {
         </div>
       </div>`;
   }
+}
+
+// Show mobile back button
+if (window.innerWidth <= 768) {
+  const btn = document.getElementById('mobile-back-btn');
+  if (btn) btn.style.display = 'inline-flex';
 }
 
 loadPost();
