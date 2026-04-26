@@ -1,10 +1,10 @@
 {
-  "generated": "2026-04-26T03:51:38.765Z",
+  "generated": "2026-04-26T04:06:18.690Z",
   "categories": [
     {
       "id": "Mobile Photos",
       "name": "Mobile Photos",
-      "count": 6,
+      "count": 7,
       "photos": [
         {
           "file": "20251121_134117.jpg",
@@ -42,46 +42,32 @@
           "date": "2025-12-20"
         },
         {
-          "file": "IMG_20260420_202300_704.webp",
-          "path": "public/photos/Mobile Photos/IMG_20260420_202300_704.webp",
-          "title": "IMG 20260420 202300 704",
-          "size": "1.3 MB",
-          "date": "2026-04-20"
+          "file": "file_00000000cd7072088300e94d212a9f6c.png",
+          "path": "public/photos/Mobile Photos/file_00000000cd7072088300e94d212a9f6c.png",
+          "title": "File 00000000cd7072088300e94d212a9f6c",
+          "size": "2.6 MB",
+          "date": "2026-04-25"
+        },
+        {
+          "file": "file_00000000f5b072088c547954e7ffd2d8.png",
+          "path": "public/photos/Mobile Photos/file_00000000f5b072088c547954e7ffd2d8.png",
+          "title": "File 00000000f5b072088c547954e7ffd2d8",
+          "size": "2.1 MB",
+          "date": "2026-04-25"
         }
       ]
     },
     {
       "id": "sky",
       "name": "Sky",
-      "count": 27,
+      "count": 22,
       "photos": [
-        {
-          "file": "1519887639616.png",
-          "path": "public/photos/sky/1519887639616.png",
-          "title": "1519887639616",
-          "size": "39.3 KB",
-          "date": "2021-03-25"
-        },
         {
           "file": "1710783.jpg",
           "path": "public/photos/sky/1710783.jpg",
           "title": "1710783",
           "size": "1.1 MB",
           "date": "2021-03-30"
-        },
-        {
-          "file": "20200213_005624.jpg",
-          "path": "public/photos/sky/20200213_005624.jpg",
-          "title": "20200213 005624",
-          "size": "423.0 KB",
-          "date": "2022-02-21"
-        },
-        {
-          "file": "20200731_132730-01.jpeg",
-          "path": "public/photos/sky/20200731_132730-01.jpeg",
-          "title": "20200731 132730 01",
-          "size": "1.8 MB",
-          "date": "2020-09-11"
         },
         {
           "file": "251038.jpg",
@@ -145,20 +131,6 @@
           "title": "Crater Lake Oregon Blue Water Blue Sky Reflections Body Of 3840x2400 6092",
           "size": "3.1 MB",
           "date": "2021-09-10"
-        },
-        {
-          "file": "gettyimages-1142126498-2048x2048.jpg",
-          "path": "public/photos/sky/gettyimages-1142126498-2048x2048.jpg",
-          "title": "Gettyimages 1142126498 2048x2048",
-          "size": "534.1 KB",
-          "date": "2021-05-09"
-        },
-        {
-          "file": "image.png",
-          "path": "public/photos/sky/image.png",
-          "title": "Image",
-          "size": "999.5 KB",
-          "date": "2022-02-15"
         },
         {
           "file": "john-jackson-peRqs_tyKeA-unsplash.jpg",
@@ -243,6 +215,90 @@
           "title": "Wp1915251 Harvard University Wallpapers",
           "size": "1.3 MB",
           "date": "2021-06-03"
+        }
+      ]
+    },
+    {
+      "id": "wallpapers",
+      "name": "Wallpapers",
+      "count": 11,
+      "photos": [
+        {
+          "file": "f1-12406.jpg",
+          "path": "public/photos/wallpapers/f1-12406.jpg",
+          "title": "F1 12406",
+          "size": "308.2 KB",
+          "date": "2025-09-03"
+        },
+        {
+          "file": "pexels-alejandro-henriquez-558322658-19302257.jpg",
+          "path": "public/photos/wallpapers/pexels-alejandro-henriquez-558322658-19302257.jpg",
+          "title": "Pexels Alejandro Henriquez 558322658 19302257",
+          "size": "4.2 MB",
+          "date": "2025-09-04"
+        },
+        {
+          "file": "pexels-david-waschbusch-959602-29421658.jpg",
+          "path": "public/photos/wallpapers/pexels-david-waschbusch-959602-29421658.jpg",
+          "title": "Pexels David Waschbusch 959602 29421658",
+          "size": "2.7 MB",
+          "date": "2025-04-04"
+        },
+        {
+          "file": "pexels-jonathanborba-29252112.jpg",
+          "path": "public/photos/wallpapers/pexels-jonathanborba-29252112.jpg",
+          "title": "Pexels Jonathanborba 29252112",
+          "size": "1.3 MB",
+          "date": "2025-09-04"
+        },
+        {
+          "file": "pexels-krzysztof-biernat-406313862-14974640.jpg",
+          "path": "public/photos/wallpapers/pexels-krzysztof-biernat-406313862-14974640.jpg",
+          "title": "Pexels Krzysztof Biernat 406313862 14974640",
+          "size": "5.0 MB",
+          "date": "2025-04-04"
+        },
+        {
+          "file": "pexels-philippedonn-1257860.jpg",
+          "path": "public/photos/wallpapers/pexels-philippedonn-1257860.jpg",
+          "title": "Pexels Philippedonn 1257860",
+          "size": "2.8 MB",
+          "date": "2025-09-03"
+        },
+        {
+          "file": "pexels-quentin-martinez-2147503099-30092959.jpg",
+          "path": "public/photos/wallpapers/pexels-quentin-martinez-2147503099-30092959.jpg",
+          "title": "Pexels Quentin Martinez 2147503099 30092959",
+          "size": "703.3 KB",
+          "date": "2025-09-04"
+        },
+        {
+          "file": "pexels-rezk-assaf-115684157-10795564.jpg",
+          "path": "public/photos/wallpapers/pexels-rezk-assaf-115684157-10795564.jpg",
+          "title": "Pexels Rezk Assaf 115684157 10795564",
+          "size": "1014.0 KB",
+          "date": "2025-09-04"
+        },
+        {
+          "file": "pexels-stywo-1261731.jpg",
+          "path": "public/photos/wallpapers/pexels-stywo-1261731.jpg",
+          "title": "Pexels Stywo 1261731",
+          "size": "3.8 MB",
+          "date": "2025-07-29"
+        },
+        {
+          "file": "pexels-timmossholder-3222686.jpg",
+          "path": "public/photos/wallpapers/pexels-timmossholder-3222686.jpg",
+          "title": "Pexels Timmossholder 3222686",
+          "size": "3.3 MB",
+          "date": "2025-07-30"
+        },
+        {
+          "file": "pexels-umkreisel-app-2832041.jpg",
+          "path": "public/photos/wallpapers/pexels-umkreisel-app-2832041.jpg",
+          "title": "Pexels Umkreisel App 2832041",
+          "size": "10.2 MB",
+          "date": "2025-07-30"
         }
       ]
     }
