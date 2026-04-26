@@ -1,18 +1,60 @@
 {
-  "generated": "2026-04-25T09:14:38.049Z",
+  "generated": "2026-04-26T03:51:38.765Z",
   "categories": [
+    {
+      "id": "Mobile Photos",
+      "name": "Mobile Photos",
+      "count": 6,
+      "photos": [
+        {
+          "file": "20251121_134117.jpg",
+          "path": "public/photos/Mobile Photos/20251121_134117.jpg",
+          "title": "20251121 134117",
+          "size": "2.4 MB",
+          "date": "2026-03-26"
+        },
+        {
+          "file": "20251123_075752.jpg",
+          "path": "public/photos/Mobile Photos/20251123_075752.jpg",
+          "title": "20251123 075752",
+          "size": "1.3 MB",
+          "date": "2026-03-26"
+        },
+        {
+          "file": "20251123_081955.jpg",
+          "path": "public/photos/Mobile Photos/20251123_081955.jpg",
+          "title": "20251123 081955",
+          "size": "3.5 MB",
+          "date": "2026-02-26"
+        },
+        {
+          "file": "20251219_093301.jpg",
+          "path": "public/photos/Mobile Photos/20251219_093301.jpg",
+          "title": "20251219 093301",
+          "size": "1.3 MB",
+          "date": "2026-03-26"
+        },
+        {
+          "file": "20251219_163422.jpg",
+          "path": "public/photos/Mobile Photos/20251219_163422.jpg",
+          "title": "20251219 163422",
+          "size": "5.5 MB",
+          "date": "2025-12-20"
+        },
+        {
+          "file": "IMG_20260420_202300_704.webp",
+          "path": "public/photos/Mobile Photos/IMG_20260420_202300_704.webp",
+          "title": "IMG 20260420 202300 704",
+          "size": "1.3 MB",
+          "date": "2026-04-20"
+        }
+      ]
+    },
     {
       "id": "sky",
       "name": "Sky",
-      "count": 28,
+      "count": 27,
       "photos": [
-        {
-          "file": "000.jpg",
-          "path": "public/photos/sky/000.jpg",
-          "title": "000",
-          "size": "688.5 KB",
-          "date": "2020-09-11"
-        },
         {
           "file": "1519887639616.png",
           "path": "public/photos/sky/1519887639616.png",
