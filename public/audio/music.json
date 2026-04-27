@@ -1,0 +1,24 @@
+{
+  "generated": "2026-04-27T16:19:28.524Z",
+  "count": 2,
+  "tracks": [
+    {
+      "id": 1,
+      "file": "interstellar.mp3",
+      "path": "public/audio/interstellar.mp3",
+      "title": "interstellar",
+      "artist": "Unknown",
+      "size": "440.9 KB",
+      "added": "2026-04-27"
+    },
+    {
+      "id": 2,
+      "file": "time.mp3",
+      "path": "public/audio/time.mp3",
+      "title": "time",
+      "artist": "Unknown",
+      "size": "459.2 KB",
+      "added": "2026-04-27"
+    }
+  ]
+}
